@@ -1,13 +1,17 @@
 [project]
 name = "dobavki-tgbot"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    {name = "Bread Coter",email = "bread.coter@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "beautifulsoup4 (>=4.14.2,<5.0.0)",
+    "mureq (>=0.2.0,<0.3.0)",
+    "fastapi (>=0.121.3,<0.122.0)",
+    "sqlalchemy (>=2.0.44,<3.0.0)"
 ]
 
 
