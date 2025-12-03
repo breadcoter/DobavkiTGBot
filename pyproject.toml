@@ -11,7 +11,8 @@ dependencies = [
     "beautifulsoup4 (>=4.14.2,<5.0.0)",
     "mureq (>=0.2.0,<0.3.0)",
     "fastapi (>=0.121.3,<0.122.0)",
-    "sqlalchemy (>=2.0.44,<3.0.0)"
+    "sqlalchemy (>=2.0.44,<3.0.0)",
+    "uvicorn (>=0.38.0,<0.39.0)"
 ]
 
 
