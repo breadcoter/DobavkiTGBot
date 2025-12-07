@@ -4,6 +4,38 @@ from multiprocessing import Pool
 from mureq import get, Response
 from bs4 import BeautifulSoup
 
+def get_categories_list() -> list[str]:
+    url: str = "https://proe.info/ru/additives/krasiteli"
+
+    response: Response = get(url=url)
+    categories_list: list[str] = [item.text.strip() for item in BeautifulSoup(response.body, 'lxml')
+                                  .find(name= 'ul', class_= 'hierarchical-taxonomy-menu')
+                                  .find_all(name= 'a', class_= 'block-taxonomymenu__link')
+                                  ]
+    return categories_list
+
+def get_dangerlvls_list():
+    url: str = "https://proe.info/ru/additives"
+
+    response: Response = get(url=url)
+    dangerlvls_list: list = [item.text.strip() for item in BeautifulSoup(response.body, 'lxml')
+                                  .find(name= 'div', class_= 'spoiler')
+                                  .find(name= 'div', class_= 'view-id-additives_legend')
+                                  .find_all(name= 'h3', class_= 'term--additive-dangers')
+                                  ]
+    return dangerlvls_list
+
+def get_origins_list():
+    url: str = "https://proe.info/ru/additives"
+
+    response: Response = get(url=url)
+    dangerlvls_list: list = [item.text.strip() for item in BeautifulSoup(response.body, 'lxml')
+                                  .find(name= 'div', class_= 'spoiler')
+                                  .find(name= 'div', class_= 'view-id-additives_legend')
+                                  .find_all(name= 'h3', class_= 'term--additive-origins')
+                                  ]
+    return dangerlvls_list
+
 # Функция собирает ссылки из определённых объектов страницы в список
 def get_adictives_list() -> list[str]:
     url: str = "https://proe.info/ru/additives"
@@ -54,6 +86,7 @@ def get_adicives_data():
         p.map(get_one_adict, adicts_links)
 
 if __name__ == '__main__':
-    start_time = time()
-    get_adicives_data()
-    print("--- %s seconds ---" % (time() - start_time))
+    # start_time = time()
+    # get_adicives_data()
+    # print("--- %s seconds ---" % (time() - start_time))
+    print(get_origins_list())
