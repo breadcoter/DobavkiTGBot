@@ -5,7 +5,7 @@ class Base(DeclarativeBase):
     pass
 
 # Таблица пищевых добавок
-class FoodAdditives(Base):
+class Additives(Base):
     __tablename__ = 'additives'
 
     id: Mapped[int] = mapped_column()
@@ -38,7 +38,7 @@ class AdditiveOrigins(Base):
     __tablename__ = 'additive_origins'
     
     id: Mapped[int] = mapped_column()
-    additive_id: Mapped[int] = mapped_column().foreign_keys(FoodAdditives.id)
+    additive_id: Mapped[int] = mapped_column().foreign_keys(Additives.id)
     origin_id: Mapped[int] = mapped_column().foreign_keys(Origins.id)
 
 # Индексная таблица опасности Х добавок
@@ -46,7 +46,7 @@ class AdditiveDangerlvl(Base):
     __tablename__ = 'additive_dangerlvls'
     
     id: Mapped[int] = mapped_column()
-    additive_id: Mapped[int] = mapped_column().foreign_keys(FoodAdditives.id)
+    additive_id: Mapped[int] = mapped_column().foreign_keys(Additives.id)
     danger_id: Mapped[int] = mapped_column().foreign_keys(Dangerlvls.id)
 
 # Индексная таблица категории Х добавок
@@ -54,5 +54,5 @@ class AdditiveCategories(Base):
     __tablename__ = 'additive_categories'
     
     id: Mapped[int] = mapped_column()
-    additive_id: Mapped[int] = mapped_column().foreign_keys(FoodAdditives.id)
+    additive_id: Mapped[int] = mapped_column().foreign_keys(Additives.id)
     category_id: Mapped[int] = mapped_column().foreign_keys(Categories.id)
